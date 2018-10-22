@@ -1,0 +1,38 @@
+  86  cd ~
+   87  sudo apt-get install python-virtualenv 
+   88  sudo apt-get install python-pip
+   89  virtualenv --version
+   90  mkdir flask-application
+   91  ls
+   92  cd flask-application/
+   93  virtualenv flask-env
+   94  source flask-env/bin/activate    (to start flask ) and "deactivated" for stop
+   95  pip install Flask
+   96  sudo vim hello.py   (file inside flask_setup)
+
+
+# for allowing port to transfer data ,add port 5000 for flask
+1. sudo iptables -L
+2. sudo iptables -A INPUT -p tcp --dport 5000 -j ACCEPT
+
+
+#after all set up execute file as
+1. python hello.py
+and file will shown in 
+2. http://127.0.0.1:5000/           
+when you want to check file in ip then change line in hello.py
+app.run(host='ip',port=5000) 
+
+
+=>sudo vim hello.py
+ from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+return "Hello World!"
+
+if (__name__ == "__main__"):
+app.run(port = 5000)    this line for local deploy
+app.run(host='ip',port=5000)  this line for global deploy
